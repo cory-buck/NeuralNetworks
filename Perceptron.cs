@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace NeuralNetworks
 {
     class Perceptron
     {
-        double[][] W;
-        double a;
-        double theta;
+        double[][] W;   //weight - trained weights
+        double a;       //alpha - training rate
+        double t;       //theta - activation level
 
         public Perceptron(int inputSize, int outputSize, double trainingRate, double activation)
         {
@@ -23,7 +20,7 @@ namespace NeuralNetworks
                 }
             }
             this.a = trainingRate;
-            this.theta = activation;
+            this.t = activation;
         }
 
         public int[]  Process(int[][] X)
@@ -39,8 +36,8 @@ namespace NeuralNetworks
                         yIn += W[j][k] * X[i][k - 1];
                     }
 
-                    if (yIn > theta) y[i] = 1;
-                    else if (-1 * theta <= yIn && yIn <= theta) y[i] = 0;
+                    if (yIn > t) y[i] = 1;
+                    else if (-1 * t <= yIn && yIn <= t) y[i] = 0;
                     else y[i] = -1;
                 }
             }
@@ -72,8 +69,8 @@ namespace NeuralNetworks
                     yIn += W[j][k] * X[k - 1];
                 }
 
-                if (yIn > theta) y = 1;
-                else if (-1 * theta <= yIn && yIn <= theta) y = 0;
+                if (yIn > t) y = 1;
+                else if (-1 * t <= yIn && yIn <= t) y = 0;
                 else y = -1;
 
                 if (y != target[j])
